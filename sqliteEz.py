@@ -26,20 +26,20 @@ class sqliteEz:
         #Создание таблицы "CurrentOrders"
         self.cur.execute("CREATE TABLE IF NOT EXISTS CurrentOrders ("
                          "ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                         "OrderID INTEGER NOT NULL, "
-                         "UserID INTEGER NOT NULL, "
+                         "OrderID INTEGER, "
+                         "UserID INTEGER, "
                          "PaidFor INTEGER NOT NULL DEFAULT 0, " #Оплаченный ли заказ, 1 - true, 0 - false, Default: 0
-                         "Completed INTEGER NOT NULL DEFAULT 0" #Выполнен ли заказ, 1 - true, 0 - false, Default: 0
-                         "FOREIGN KEY (OrderID) REFERENCES Foods(ID), "
-                         "FOREIGN KEY (UserID) REFERENCES UserList(ID), "
+                         "Completed INTEGER NOT NULL DEFAULT 0, " #Выполнен ли заказ, 1 - true, 0 - false, Default: 0
+                         "FOREIGN KEY (OrderID) REFERENCES Foods (ID), "
+                         "FOREIGN KEY (UserID) REFERENCES UserList (ID) "
                          ");")
         #Создание таблицы "History"
         self.cur.execute("CREATE TABLE IF NOT EXISTS History ("
                          "ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                         "OrderID INTEGER NOT NULL, "
-                         "CurrentUserID INTEGER NOT NULL, "
-                         "FOREIGN KEY (OrderID) REFERENCES Foods(ID), "
-                         "FOREIGN KEY (CurrentUserID) REFERENCES CurrentOrders(ID) "
+                         "OrderID INTEGER, "
+                         "CurrentUserID INTEGER, "
+                         "FOREIGN KEY (OrderID) REFERENCES Foods (ID), "
+                         "FOREIGN KEY (CurrentUserID) REFERENCES CurrentOrders (ID) "
                          ");")
         
     #Деструктор
