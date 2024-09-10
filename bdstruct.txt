@@ -1,4 +1,4 @@
-Table: OrderList
+Table: Foods
 ID INTEGER PRIMARY KEY AUTOINCREMENT,
 Name TEXT NOT NULL,
 Description TEXT,
@@ -12,7 +12,7 @@ SecondName TEXT NOT NULL
 
 Table: CurrentOrders
 ID INTEGER PRIMARY KEY AUTOINCREMENT,
-FOREIGN KEY (OrderID) REFERENCES OrderList(ID)
+FOREIGN KEY (OrderID) REFERENCES Foods(ID)
 FOREIGN KEY (UserID) REFERENCES UserList(ID)
 PaidFor INTEGER NOT NULL, //Оплаченный ли заказ, 1 - true, 0 - false, Default: 0
 Completed INTEGER NOT NULL //Выполнен ли заказ, 1 - true, 0 - false, Default: 0
