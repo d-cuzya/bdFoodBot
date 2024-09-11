@@ -52,4 +52,4 @@ class sqliteEz:
     def getColumnValueByCondition(self, _Table, _ColumnForCondition, _ValueForCondition, _ReturnColumn):
         return self.cur.execute("SELECT ",_ReturnColumn," FROM ", _Table," WHERE ",_ColumnForCondition," = ", _ValueForCondition,";")
     
-    def add
+    #def add
