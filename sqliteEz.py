@@ -51,15 +51,10 @@ class sqliteEz:
     #Получение значение колонки из таблицы с определённым условием 
     #_Table - название требуемой таблицы, _ColumnForCondition - Колонка к которому будет преминятся условие, _ValueForCondition - какое значение должно быть у колонки, _ReturnColumn - какую колонку вернуть
     def getColumnValueByCondition(self, _Table, _ColumnForCondition, _ValueForCondition, _ReturnColumn):
-        return self.cur.execute("SELECT ? FROM ? WHERE ? = ?;", (_ReturnColumn, _Table, _ColumnForCondition, _ValueForCondition))
+        self.cur.execute(f"SELECT \"{_ReturnColumn}\" FROM \"{_Table}\" WHERE \"{_ColumnForCondition}\" = \"{_ValueForCondition}\";", ())
+        return self.cur.fetchall()[0][0]
     
     #Функция добовления строки в таблицу Foods
-    def addFoods(self, _Name):
-        self.cur.execute("INSERT INTO Foods (Name) VALUES (?);", (_Name,))
+    def addFoods(self, _Name, _Description = "", _Price = "", _Img = ""):
+        self.cur.execute("INSERT INTO Foods (Name, Description, Price, Img) VALUES (?, ?, ?, ?);", (_Name, _Description, _Price, _Img))
         self.con.commit()
-#    def addFoods(self, _Name, _Description):
-#        self.cur.execute()
-#    def addFoods(self, _Name, _Description, Price):
-#        self.cur.execute()
-#    def addFoods(self, _Name, _Description, Price, Img):
-#        self.cur.execute()
