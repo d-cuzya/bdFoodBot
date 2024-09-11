@@ -68,5 +68,4 @@ class sqliteEz:
             self.cur.execute("INSERT INTO CurrentOrders (FoodID, UserID) VALUES (?, ?);", (_FoodID, _UserID))
             self.con.commit()
         except:
-            print(f"FoodID({_FoodID}) or UserID({_UserID}) not found.")
-            return False
+            return None
