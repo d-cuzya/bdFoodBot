@@ -63,6 +63,10 @@ class sqliteEz:
         self.cur.execute("INSERT INTO UserList (FirstName, SecondName) VALUES (?, ?);", (_FirstName, _SecondName))
         self.con.commit()
     #Функция добовления заказа
-    def addOrder(self, ):
-        self.cur.execute()
-        self.con.commit()
+    def addOrder(self, _FoodID, _UserID):
+        try:
+            self.cur.execute("INSERT INTO CurrentOrders (FoodID, UserID) VALUES (?, ?);", (_FoodID, _UserID))
+            self.con.commit()
+        except:
+            print(f"FoodID({_FoodID}) or UserID({_UserID}) not found.")
+            return False
