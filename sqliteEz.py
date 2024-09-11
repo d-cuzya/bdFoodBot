@@ -47,3 +47,9 @@ class sqliteEz:
         #print("Деструктор")
         self.con.close()
 
+    #Получение значение колонки из таблицы с определённым условием 
+    #_Table - название требуемой таблицы, _ColumnForCondition - Колонка к которому будет преминятся условие, _ValueForCondition - какое значение должно быть у колонки, _ReturnColumn - какую колонку вернуть
+    def getColumnValueByCondition(self, _Table, _ColumnForCondition, _ValueForCondition, _ReturnColumn):
+        return self.cur.execute("SELECT ",_ReturnColumn," FROM ", _Table," WHERE ",_ColumnForCondition," = ", _ValueForCondition,";")
+    
+    def add
